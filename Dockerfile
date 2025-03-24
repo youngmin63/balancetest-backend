@@ -1,8 +1,11 @@
+# 1단계: 빌드 전용
 FROM gradle:7.6.0-jdk17 AS builder
-COPY . /home/app
 WORKDIR /home/app
-RUN gradle build
+COPY . .
+RUN chmod +x ./gradlew
+RUN ./gradlew build
 
+# 2단계: 실행 전용 (더 가볍고 빠름)
 FROM openjdk:17-jdk-slim
 WORKDIR /app
 COPY --from=builder /home/app/build/libs/*.jar app.jar
