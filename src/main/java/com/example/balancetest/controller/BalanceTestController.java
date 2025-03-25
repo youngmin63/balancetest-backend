@@ -12,7 +12,7 @@ import com.example.balancetest.service.BalanceTestService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/test")
+@RequestMapping("/api")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*") // 프론트엔드에서 요청 허용
 public class BalanceTestController {
