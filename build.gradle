@@ -36,4 +36,5 @@ tasks.named('test') {
 
 bootJar {
     archiveFileName = 'app.jar'
+    launchScript() // 실행 가능한 스크립트로 만듦
 }
