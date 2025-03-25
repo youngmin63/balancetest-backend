@@ -19,7 +19,7 @@ public class BalanceTestController {
 
     private final BalanceTestService service;
 
-    @PostMapping
+    @PostMapping("/submit")
     public String saveResult(@RequestBody BalanceTestRequest request) {
         System.out.println("🔥 저장 요청 받음: " + request.getName() + ", " + request.getDurationSeconds());
 
