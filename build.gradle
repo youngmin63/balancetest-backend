@@ -21,12 +21,20 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	compileOnly 'org.projectlombok:lombok:1.18.30'
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
-
+    implementation 'org.postgresql:postgresql'
     testCompileOnly 'org.projectlombok:lombok:1.18.30'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
+	
+
+	
 
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+bootJar {
+    archiveFileName = 'app.jar'
+    launchScript() // 실행 가능한 스크립트로 만듦
 }

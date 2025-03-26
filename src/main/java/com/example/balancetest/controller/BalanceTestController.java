@@ -12,14 +12,15 @@ import com.example.balancetest.service.BalanceTestService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/test")
+@RequestMapping("/api")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*") // 프론트엔드에서 요청 허용
+@CrossOrigin(origins = "https://youngmin63.github.io")
+ // 프론트엔드에서 요청 허용
 public class BalanceTestController {
 
     private final BalanceTestService service;
 
-    @PostMapping
+    @PostMapping("/submit")
     public String saveResult(@RequestBody BalanceTestRequest request) {
         System.out.println("🔥 저장 요청 받음: " + request.getName() + ", " + request.getDurationSeconds());
 
