@@ -28,7 +28,9 @@ public class BalanceTestService {
                 .gender(request.getGender())
                 .durationSeconds(request.getDurationSeconds())
                 .testDate(LocalDateTime.now())
+                .userId(request.getUserId())
                 .build();
+               
 
         repository.save(result);
     }
@@ -92,6 +94,10 @@ public boolean deleteResult(Long id) {
         return true;
     }
     return false;
+}
+
+public List<BalanceTestResult> getResultsByUserId(String userId) {
+    return repository.findByUserId(userId);
 }
 
    
