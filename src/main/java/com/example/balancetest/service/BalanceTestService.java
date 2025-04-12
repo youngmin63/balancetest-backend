@@ -86,5 +86,13 @@ public Map<String, Double> getAverageByAgeGroup() {
     return averageMap;
 }
 
+public boolean deleteResult(Long id) {
+    if (repository.existsById(id)) {
+        repository.deleteById(id);
+        return true;
+    }
+    return false;
+}
+
    
 }
