@@ -26,4 +26,7 @@ public class BalanceTestResult {
     private double durationSeconds;
 
     private LocalDateTime testDate;
+
+    private String userId;
+
 }

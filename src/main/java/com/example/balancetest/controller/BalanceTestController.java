@@ -78,4 +78,9 @@ public String deleteResult(@PathVariable Long id) {
     return deleted ? "삭제되었습니다." : "해당 ID를 찾을 수 없습니다.";
 }
 
+@GetMapping("/results/by-user")
+public List<BalanceTestResult> getResultsByUser(@RequestParam String userId) {
+    return service.getResultsByUserId(userId);
 }
+}
+    

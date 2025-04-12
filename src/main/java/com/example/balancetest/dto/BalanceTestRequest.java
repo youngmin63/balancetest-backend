@@ -14,4 +14,5 @@ public class BalanceTestRequest {
     private int age;
     private String gender;
     private double durationSeconds;
+    private String userId;
 }

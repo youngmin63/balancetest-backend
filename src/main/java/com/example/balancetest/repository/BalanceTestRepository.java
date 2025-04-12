@@ -19,6 +19,9 @@ public interface BalanceTestRepository extends JpaRepository<BalanceTestResult, 
     @Query("SELECT AVG(r.durationSeconds) FROM BalanceTestResult r")
     double calculateAverageDuration();
 
+    //사용자별 기록 조회 기능 
+    List<BalanceTestResult> findByUserId(String userId);
+
 
 
 
