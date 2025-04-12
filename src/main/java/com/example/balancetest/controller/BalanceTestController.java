@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -73,14 +75,20 @@ public Map<String, Double> getAverageByAgeGroup() {
 
 //기록 삭제 
 @DeleteMapping("/results/{id}")
-public String deleteResult(@PathVariable Long id) {
-    boolean deleted = service.deleteResult(id);
-    return deleted ? "삭제되었습니다." : "해당 ID를 찾을 수 없습니다.";
-}
+public ResponseEntity<String> deleteResult(
+        @PathVariable Long id,
+        @RequestParam String userId) {
 
+    boolean deleted = service.deleteResult(id, userId);
+    if (deleted) {
+        return ResponseEntity.ok("삭제되었습니다.");
+    } else {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body("삭제 권한이 없습니다.");
+    }
+}
+//유저별 기록 조회
 @GetMapping("/results/by-user")
 public List<BalanceTestResult> getResultsByUser(@RequestParam String userId) {
     return service.getResultsByUserId(userId);
 }
 }
-    

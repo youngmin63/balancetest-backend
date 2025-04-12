@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -88,14 +89,20 @@ public Map<String, Double> getAverageByAgeGroup() {
     return averageMap;
 }
 
-public boolean deleteResult(Long id) {
-    if (repository.existsById(id)) {
-        repository.deleteById(id);
-        return true;
+// 기록 삭제
+public boolean deleteResult(Long id, String userId) {
+    Optional<BalanceTestResult> optional = repository.findById(id);
+    if (optional.isPresent()) {
+        BalanceTestResult result = optional.get();
+        if (userId.equals(result.getUserId())) {
+            repository.deleteById(id);
+            return true;
+        }
     }
     return false;
 }
 
+// 유저 id별 기록 조회
 public List<BalanceTestResult> getResultsByUserId(String userId) {
     return repository.findByUserId(userId);
 }
