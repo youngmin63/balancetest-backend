@@ -42,7 +42,7 @@ public class BalanceTestController {
 }
 
 // 특정 날짜 기록 조회
-@GetMapping("/results")
+@GetMapping("/results/by-date")
 public List<BalanceTestResult> getResultsByDate(@RequestParam(required = false) String date) {
     if (date != null) {
         return service.getResultsByDate(LocalDate.parse(date));
