@@ -1,6 +1,8 @@
 package com.example.balancetest.service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -27,4 +29,26 @@ public class BalanceTestService {
 
         repository.save(result);
     }
+
+    // 전체 기록 조회
+    public List<BalanceTestResult> getAllResults() {
+        return repository.findAll();
+    }
+//특정 날짜 기록 조회
+    public List<BalanceTestResult> getResultsByDate(LocalDate date) {
+    return repository.findByTestDateBetween(date.atStartOfDay(), date.plusDays(1).atStartOfDay());
+}
+
+// 최근 7일 기록 조회
+public List<BalanceTestResult> getRecentResults() {
+    LocalDateTime oneWeekAgo = LocalDateTime.now().minusDays(7);
+    return repository.findByTestDateAfter(oneWeekAgo);
+}
+
+// 평균 기록 조회 
+public double getAverageDuration() {
+    return repository.calculateAverageDuration();
+}
+
+   
 }
