@@ -63,4 +63,9 @@ public Map<String, Double> getAverageDuration() {
     return Map.of("averageDuration", avg);
 }
 
+@GetMapping("/results/average-by-age-group")
+public Map<String, Double> getAverageByAgeGroup() {
+    return service.getAverageByAgeGroup();
+}
+
 }
